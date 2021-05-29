@@ -8,14 +8,10 @@ import favicon from '../../assets/favicon.png';
 
 export const ChallengesContext = createContext();
 
-export function ChallengesProvider({ children, ...rest }) {
-  const [level, setLevel] = useState(rest.level ?? 1);
-  const [currentExperience, setCurrentExperience] = useState(
-    rest.currentExperience ?? 0
-  );
-  const [challengesCompleted, setChallengesCompleted] = useState(
-    rest.challengesCompleted ?? 0
-  );
+export function ChallengesProvider({ children }) {
+  const [level, setLevel] = useState(1);
+  const [currentExperience, setCurrentExperience] = useState(0);
+  const [challengesCompleted, setChallengesCompleted] = useState(0);
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
 
@@ -23,16 +19,24 @@ export function ChallengesProvider({ children, ...rest }) {
 
   useEffect(() => {
     Notification.requestPermission();
+
+    const level = localStorage.getItem('level');
+    const currentExperience = localStorage.getItem('currentExperience');
+    const challengesCompleted = localStorage.getItem('challengesCompleted');
+
+    console.log(level, currentExperience, challengesCompleted);
+
+    if (level && currentExperience && challengesCompleted) {
+      setLevel(Number(level));
+      setCurrentExperience(Number(currentExperience));
+      setChallengesCompleted(Number(challengesCompleted));
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('level', String(level));
     localStorage.setItem('currentExperience', String(currentExperience));
     localStorage.setItem('challengesCompleted', String(challengesCompleted));
-
-    // Cookies.set('level', String(level));
-    // Cookies.set('currentExperience', String(currentExperience));
-    // Cookies.set('challengesCompleted', String(challengesCompleted));
   }, [level, currentExperience, challengesCompleted]);
 
   function levelUp() {
