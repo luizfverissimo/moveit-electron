@@ -17,11 +17,7 @@ export default function Home() {
   const [challengesCompleted, setChallengesCompleted] = useState(0)
 
   useEffect(() => {
-    // const { level, currentExperience, challengesCompleted } = Cookie.get()
-
-    const level = localStorage.getItem('level')
-    const currentExperience = localStorage.getItem('currentExperience')
-    const challengesCompleted = localStorage.getItem('challengesCompleted')
+    const {level, currentExperience, challengesCompleted} = electron.storageApi.getItem()
 
     setLevel(Number(level))
     setCurrentExperience(Number(currentExperience))

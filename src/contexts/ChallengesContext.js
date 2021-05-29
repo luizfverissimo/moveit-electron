@@ -18,21 +18,32 @@ export function ChallengesProvider({ children, ...rest }) {
   );
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+  const [isAppLoaded, setIsAppLoaded] = useState(false)
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   useEffect(() => {
     Notification.requestPermission();
+    const {level, currentExperience, challengesCompleted} = electron.storageApi.getItem()
+    if(level && currentExperience && challengesCompleted) {
+      setLevel(Number(level))
+      setChallengesCompleted(Number(challengesCompleted))
+      setCurrentExperience(Number(currentExperience))
+      setIsAppLoaded(true)
+    }    
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('level', String(level));
-    localStorage.setItem('currentExperience', String(currentExperience));
-    localStorage.setItem('challengesCompleted', String(challengesCompleted));
+    const storageItem = {
+      level: String(level),
+      currentExperience: String(currentExperience),
+      challengesCompleted: String(challengesCompleted)
+    }
 
-    // Cookies.set('level', String(level));
-    // Cookies.set('currentExperience', String(currentExperience));
-    // Cookies.set('challengesCompleted', String(challengesCompleted));
+    if(isAppLoaded) {
+      electron.storageApi.setItem(storageItem)
+    }
+
   }, [level, currentExperience, challengesCompleted]);
 
   function levelUp() {
