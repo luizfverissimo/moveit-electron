@@ -1,0 +1,17 @@
+.configBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.configBar img {
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0.8rem;
+}
+
+.configBar img:hover {
+  filter: brightness(0.8);
+}

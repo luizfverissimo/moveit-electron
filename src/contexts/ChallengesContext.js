@@ -85,6 +85,18 @@ export function ChallengesProvider({ children }) {
     setChallengesCompleted(challengesCompleted + 1);
   }
 
+  function resetStats() {
+    if (confirm('Você deseja resetar seus Stats?')) {
+      localStorage.setItem('level', String(1));
+      localStorage.setItem('currentExperience', String(0));
+      localStorage.setItem('challengesCompleted', String(0));
+
+      setLevel(1);
+      setCurrentExperience(0);
+      setChallengesCompleted(0);
+    }
+  }
+
   return (
     <ChallengesContext.Provider
       value={{
@@ -97,7 +109,8 @@ export function ChallengesProvider({ children }) {
         startNewChallenge,
         resetChallenge,
         completeChallenge,
-        closeLevelUpModal
+        closeLevelUpModal,
+        resetStats
       }}
     >
       {children}

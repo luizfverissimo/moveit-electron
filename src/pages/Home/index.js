@@ -1,26 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 import { ChallengeBox } from '../../components/ChallengeBox';
 import { CompletedChallenges } from '../../components/CompletedChallenges';
 import { CountDown } from '../../components/CountDown';
 import { ExperienceBar } from '../../components/ExperienceBar';
 import { Profile } from '../../components/Profile';
+import { ConfigBar } from '../../components/ConfigBar';
+
 import { CountdownProvider } from '../../contexts/CountdownContext';
+import { ChallengesProvider } from '../../contexts/ChallengesContext';
 
 import '../../styles/pages/Home.css';
-import { ChallengesProvider } from '../../contexts/ChallengesContext';
 
 export default function Home() {
   return (
-    <ChallengesProvider
-      // level={level}
-      // currentExperience={currentExperience}
-      // challengesCompleted={challengesCompleted}
-    >
       <div className='container'>
+        <ConfigBar />
         <ExperienceBar />
-
-        <CountdownProvider>
           <section>
             <div>
               <Profile />
@@ -31,8 +27,6 @@ export default function Home() {
               <ChallengeBox />
             </div>
           </section>
-        </CountdownProvider>
       </div>
-    </ChallengesProvider>
   );
 }
