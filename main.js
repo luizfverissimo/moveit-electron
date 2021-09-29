@@ -17,4 +17,11 @@ function createWindow() {
   win.loadFile('index.html');
 }
 
+if (process.platform !== 'darwin') {
+  const image = electron.nativeImage.createFromPath(
+    app.getAppPath() + "/assets/favicon.icns"
+  );
+  app.dock.setIcon(image);
+}
+
 app.whenReady().then(createWindow);
