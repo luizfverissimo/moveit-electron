@@ -12,7 +12,7 @@
 
 > 🏃‍♂️ Time controller for physical actives, project created at NLW #4. Port to Electron.js
 
-### 🔽 [Download](https://1drv.ms/u/s!Ah4VKOGMPB8ojbFFDiVyGx7Lu0OJMw?e=ra04C2)
+### 🔽 [Download](https://github.com/luizfverissimo/moveit-electron/releases/tag/v0.1-alpha)
 ### 🏠 [Homepage](https://github.com/luizfverissimo/moveit-electron)
 
 ## Screenshots
